@@ -1,0 +1,11 @@
+{
+  "framework": "vite",
+  "functions": {
+    "api/telegram.js": {
+      "maxDuration": 10
+    },
+    "api/setup-webhook.js": {
+      "maxDuration": 10
+    }
+  }
+}
