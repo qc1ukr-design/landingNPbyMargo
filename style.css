@@ -217,6 +217,24 @@ strong { font-weight: 700; }
   50%      { transform: translateY(-12px); }
 }
 
+/* ---------- VIDEO SECTION ---------- */
+.video-section { padding: 80px 0 64px; }
+
+.video-section__wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+  background: #000;
+}
+
+.video-section__player {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 /* ---------- PAIN ---------- */
 .pain { padding: 80px 0; }
 
