@@ -206,33 +206,19 @@ strong { font-weight: 700; }
   justify-content: center;
 }
 
-.hero__shield {
+.hero__video {
   width: 100%;
-  max-width: 340px;
-  animation: floatShield 6s ease-in-out infinite;
-}
-
-@keyframes floatShield {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-12px); }
-}
-
-/* ---------- VIDEO SECTION ---------- */
-.video-section { padding: 80px 0 64px; }
-
-.video-section__wrapper {
-  max-width: 800px;
-  margin: 0 auto;
+  max-width: 360px;
   border-radius: var(--radius);
   overflow: hidden;
-  box-shadow: 0 8px 40px rgba(0,0,0,0.12);
-  background: #000;
+  box-shadow: 0 12px 48px rgba(119,18,16,0.15);
 }
 
-.video-section__player {
+.hero__video-player {
   display: block;
   width: 100%;
   height: auto;
+  border-radius: var(--radius);
 }
 
 /* ---------- PAIN ---------- */
@@ -950,7 +936,8 @@ strong { font-weight: 700; }
     grid-template-columns: 1fr;
     text-align: left;
   }
-  .hero__visual { display: none; }
+  .hero__visual { order: -1; }
+  .hero__video { max-width: 280px; margin: 0 auto 24px; }
   .hero { min-height: auto; padding: 100px 0 64px; }
   .hero__trust { justify-content: flex-start; }
   .hero__trust-sep { display: none; }
