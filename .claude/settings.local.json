@@ -32,7 +32,8 @@
       "Bash(npm install vite --save-dev)",
       "mcp__Claude_Preview__preview_start",
       "Bash(ls \"C:/Users/qc1uk/Desktop/Лендинг/node_modules/.bin/vite\"*)",
-      "Bash(cygpath -w \"/c/Program Files/nodejs/node.exe\")"
+      "Bash(cygpath -w \"/c/Program Files/nodejs/node.exe\")",
+      "Bash(identify \"C:/Users/qc1uk/Desktop/Лендинг/temp_screenshot.png\")"
     ]
   }
 }
