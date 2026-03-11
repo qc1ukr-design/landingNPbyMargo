@@ -127,6 +127,76 @@
     </div>
   </section>
 
+  <!-- ========== RISK CALCULATOR ========== -->
+  <section class="calc section--white" id="calc">
+    <div class="container">
+      <h2 class="section__title">Калькулятор ризику: скільки ви втрачаєте без бухгалтера?</h2>
+      <p class="section__subtitle">Введіть ваші дані &mdash; і побачте реальну ціну &laquo;самостійної бухгалтерії&raquo;</p>
+
+      <div class="calc__wrapper">
+        <div class="calc__inputs">
+          <div class="calc__field">
+            <label for="calcRevenue">Місячний оборот (грн)</label>
+            <input type="range" id="calcRevenue" min="50000" max="2000000" step="10000" value="300000">
+            <div class="calc__range-labels">
+              <span>50 000</span>
+              <span class="calc__range-value" id="calcRevenueValue">300 000 грн</span>
+              <span>2 000 000</span>
+            </div>
+          </div>
+          <div class="calc__field">
+            <label for="calcFops">Кількість ФОПів</label>
+            <div class="calc__btns" id="calcFops">
+              <button class="calc__btn" data-value="1">1</button>
+              <button class="calc__btn calc__btn--active" data-value="2">2</button>
+              <button class="calc__btn" data-value="3">3</button>
+              <button class="calc__btn" data-value="4">4</button>
+              <button class="calc__btn" data-value="5">5+</button>
+            </div>
+          </div>
+          <div class="calc__field">
+            <label>Чи є у вас РРО/ПРРО?</label>
+            <div class="calc__btns" id="calcRro">
+              <button class="calc__btn" data-value="yes">Так</button>
+              <button class="calc__btn calc__btn--active" data-value="no">Ні</button>
+            </div>
+          </div>
+          <div class="calc__field">
+            <label>Чи є наймані працівники?</label>
+            <div class="calc__btns" id="calcEmployees">
+              <button class="calc__btn calc__btn--active" data-value="no">Ні</button>
+              <button class="calc__btn" data-value="yes">Так</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="calc__results" id="calcResults">
+          <div class="calc__result-card calc__result-card--danger">
+            <span class="calc__result-label">Потенційні штрафи за рік</span>
+            <span class="calc__result-number" id="calcPenalty">0 грн</span>
+            <span class="calc__result-detail" id="calcPenaltyDetail"></span>
+          </div>
+          <div class="calc__result-card calc__result-card--warning">
+            <span class="calc__result-label">Переплата за неоптимальну групу ЄП</span>
+            <span class="calc__result-number" id="calcOverpay">0 грн</span>
+            <span class="calc__result-detail" id="calcOverpayDetail"></span>
+          </div>
+          <div class="calc__result-card calc__result-card--neutral">
+            <span class="calc__result-label">Вартість нашого супроводу</span>
+            <span class="calc__result-number" id="calcService">0 грн</span>
+            <span class="calc__result-detail">за рік з повним захистом</span>
+          </div>
+          <div class="calc__result-total">
+            <span>Ви ризикуєте сумою</span>
+            <strong id="calcTotal">0 грн/рік</strong>
+            <span>що у <strong id="calcMultiplier">0</strong> разів більше вартості захисту</span>
+          </div>
+          <a href="#final-cta" class="btn btn--primary calc__cta">Захистити бізнес</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ========== SOLUTION ========== -->
   <section class="solution section--white" id="solution">
     <div class="container">
@@ -227,6 +297,65 @@
 
       <div class="results__main">
         <p><strong>Головний результат:</strong> ви відкриваєте повідомлення від банку без страху. Ви знаєте, що у вас все чисто. Ви нарешті займаєтесь тим, що приносить гроші&nbsp;&mdash; продажами.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== QUIZ ========== -->
+  <section class="quiz section--beige" id="quiz">
+    <div class="container">
+      <h2 class="section__title">Тест: чи в безпеці ваш бізнес?</h2>
+      <p class="section__subtitle">5 питань &mdash; і ви дізнаєтесь рівень ризику вашого обліку</p>
+
+      <div class="quiz__card">
+        <!-- Progress -->
+        <div class="quiz__progress">
+          <div class="quiz__progress-bar" id="quizProgressBar"></div>
+        </div>
+        <span class="quiz__step" id="quizStep">Питання 1 з 5</span>
+
+        <!-- Questions -->
+        <div class="quiz__questions" id="quizQuestions">
+          <div class="quiz__q" data-q="0">
+            <h3>Чи подаєте ви декларації вчасно?</h3>
+            <button class="quiz__option" data-score="0">Так, завжди вчасно</button>
+            <button class="quiz__option" data-score="1">Іноді запізнююсь</button>
+            <button class="quiz__option" data-score="2">Часто пропускаю дедлайни</button>
+          </div>
+          <div class="quiz__q" data-q="1" style="display:none">
+            <h3>Чи є у вас РРО/ПРРО при роботі з NovaPay?</h3>
+            <button class="quiz__option" data-score="0">Так, все налаштовано</button>
+            <button class="quiz__option" data-score="1">Не впевнений, чи потрібно</button>
+            <button class="quiz__option" data-score="2">Ні, працюю без чеків</button>
+          </div>
+          <div class="quiz__q" data-q="2" style="display:none">
+            <h3>Чи моніторите ви ліміти фінмоніторингу?</h3>
+            <button class="quiz__option" data-score="0">Так, слідкую щомісяця</button>
+            <button class="quiz__option" data-score="1">Приблизно знаю свої обороти</button>
+            <button class="quiz__option" data-score="2">Ні, не знаю про ліміти</button>
+          </div>
+          <div class="quiz__q" data-q="3" style="display:none">
+            <h3>Чи оптимальна ваша група ЄП для поточних оборотів?</h3>
+            <button class="quiz__option" data-score="0">Так, бухгалтер перевірив</button>
+            <button class="quiz__option" data-score="1">Не впевнений</button>
+            <button class="quiz__option" data-score="2">Навіть не знаю, яка різниця</button>
+          </div>
+          <div class="quiz__q" data-q="4" style="display:none">
+            <h3>Хто відповідає за ваш бухгалтерський облік?</h3>
+            <button class="quiz__option" data-score="0">Професійний бухгалтер з e&#8209;commerce досвідом</button>
+            <button class="quiz__option" data-score="1">Бухгалтер-фрілансер або знайомий</button>
+            <button class="quiz__option" data-score="2">Я сам / Taxer / ніхто</button>
+          </div>
+        </div>
+
+        <!-- Result -->
+        <div class="quiz__result" id="quizResult" style="display:none">
+          <div class="quiz__result-icon" id="quizResultIcon"></div>
+          <h3 id="quizResultTitle"></h3>
+          <p id="quizResultText"></p>
+          <a href="#final-cta" class="btn btn--primary quiz__cta">Отримати безкоштовний аудит</a>
+          <button class="quiz__restart" id="quizRestart">Пройти ще раз</button>
+        </div>
       </div>
     </div>
   </section>
@@ -379,6 +508,43 @@
       </div>
 
       <p class="guarantee__footer">Бухгалтерський супровід&nbsp;&mdash; це довгострокові відносини на довірі. Якщо ми не підійдемо&nbsp;&mdash; краще з&rsquo;ясувати одразу.</p>
+    </div>
+  </section>
+
+  <!-- ========== DEADLINE TIMER ========== -->
+  <section class="deadline section--beige" id="deadline">
+    <div class="container">
+      <div class="deadline__inner">
+        <div class="deadline__icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#771210" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="deadline__content">
+          <h3 class="deadline__title">До наступного податкового дедлайну залишилось:</h3>
+          <div class="deadline__timer" id="deadlineTimer">
+            <div class="deadline__unit">
+              <span class="deadline__num" id="deadlineDays">00</span>
+              <span class="deadline__label">днів</span>
+            </div>
+            <div class="deadline__sep">:</div>
+            <div class="deadline__unit">
+              <span class="deadline__num" id="deadlineHours">00</span>
+              <span class="deadline__label">годин</span>
+            </div>
+            <div class="deadline__sep">:</div>
+            <div class="deadline__unit">
+              <span class="deadline__num" id="deadlineMinutes">00</span>
+              <span class="deadline__label">хвилин</span>
+            </div>
+            <div class="deadline__sep">:</div>
+            <div class="deadline__unit">
+              <span class="deadline__num" id="deadlineSeconds">00</span>
+              <span class="deadline__label">секунд</span>
+            </div>
+          </div>
+          <p class="deadline__event" id="deadlineEvent"></p>
+          <p class="deadline__warning">Не встигнете &mdash; штраф. Делегуйте облік, поки є час.</p>
+        </div>
+      </div>
     </div>
   </section>
 
