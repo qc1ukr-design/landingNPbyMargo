@@ -1195,6 +1195,168 @@ strong { font-weight: 700; }
   color: var(--c-text-sec);
 }
 
+/* ---------- SCROLL PROGRESS BAR ---------- */
+.scroll-progress {
+  position: fixed;
+  top: 0; left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--c-primary), #C4302B);
+  z-index: 200;
+  transition: width 0.05s linear;
+}
+
+/* ---------- HERO ENTRANCE ANIMATIONS ---------- */
+.hero__content > * {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: heroEntrance 0.7s ease forwards;
+}
+.hero__content > *:nth-child(1) { animation-delay: 0.1s; }
+.hero__content > *:nth-child(2) { animation-delay: 0.25s; }
+.hero__content > *:nth-child(3) { animation-delay: 0.4s; }
+.hero__content > *:nth-child(4) { animation-delay: 0.55s; }
+.hero__content > *:nth-child(5) { animation-delay: 0.65s; }
+.hero__content > *:nth-child(6) { animation-delay: 0.75s; }
+
+@keyframes heroEntrance {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero__visual {
+  opacity: 0;
+  transform: scale(0.9);
+  animation: heroVideoEntrance 0.8s ease 0.3s forwards;
+}
+
+@keyframes heroVideoEntrance {
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ---------- CTA PULSE ANIMATION ---------- */
+.btn--primary {
+  position: relative;
+  overflow: visible;
+}
+.btn--primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+  box-shadow: 0 0 0 0 rgba(119, 18, 16, 0.4);
+  animation: ctaPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes ctaPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(119, 18, 16, 0.4); }
+  50% { box-shadow: 0 0 0 12px rgba(119, 18, 16, 0); }
+}
+
+/* ---------- CARD HOVER EFFECTS ---------- */
+.pain__card,
+.social__card,
+.guarantee__card,
+.offer__bonus,
+.solution__item {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.6s ease;
+}
+.pain__card:hover,
+.social__card:hover,
+.guarantee__card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.1);
+}
+.offer__bonus:hover,
+.solution__item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+/* ---------- QUIZ SLIDE TRANSITIONS ---------- */
+.quiz__q {
+  animation: quizSlideIn 0.4s ease;
+}
+
+@keyframes quizSlideIn {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.quiz__option {
+  transition: all 0.2s ease, transform 0.15s ease;
+}
+.quiz__option:hover {
+  transform: translateX(6px);
+  border-color: var(--c-primary);
+  background: rgba(119,18,16,0.03);
+}
+
+.quiz__result {
+  animation: quizResultPop 0.5s ease;
+}
+@keyframes quizResultPop {
+  0% { opacity: 0; transform: scale(0.8); }
+  60% { transform: scale(1.03); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* ---------- DEADLINE TIMER TICK ---------- */
+.deadline__num {
+  transition: transform 0.15s ease;
+}
+.deadline__num.tick {
+  animation: timerTick 0.3s ease;
+}
+
+@keyframes timerTick {
+  0% { transform: scaleY(1); }
+  30% { transform: scaleY(0.85); }
+  60% { transform: scaleY(1.05); }
+  100% { transform: scaleY(1); }
+}
+
+/* ---------- STEPS TIMELINE DRAW ---------- */
+.steps__line {
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 1.2s ease;
+}
+.steps__line.steps__line--drawn {
+  transform: scaleX(1);
+}
+
+.steps__dot {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.steps__item:hover .steps__dot {
+  transform: scale(1.12);
+  box-shadow: 0 4px 16px rgba(119,18,16,0.3);
+}
+
+/* ---------- CALCULATOR RESULTS ANIMATION ---------- */
+.calc__result-number {
+  transition: transform 0.2s ease;
+}
+.calc__result-number.calc-bump {
+  animation: calcBump 0.3s ease;
+}
+
+@keyframes calcBump {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+/* ---------- VIDEO GLOW ---------- */
+.hero__video {
+  animation: videoGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes videoGlow {
+  from { box-shadow: 0 12px 48px rgba(119,18,16,0.15); }
+  to { box-shadow: 0 16px 56px rgba(119,18,16,0.28); }
+}
+
 /* ---------- SCROLL ANIMATIONS ---------- */
 .fade-in {
   opacity: 0;
@@ -1204,6 +1366,16 @@ strong { font-weight: 700; }
 .fade-in--visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* ---------- PREFERS REDUCED MOTION ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .scroll-progress { display: none; }
 }
 
 /* ============================================================

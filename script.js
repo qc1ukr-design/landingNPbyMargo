@@ -78,21 +78,32 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  /* ---------- 4. HEADER SCROLL EFFECT ---------- */
+  /* ---------- 4. HEADER SCROLL EFFECT + PROGRESS BAR ---------- */
   const header = document.getElementById('header');
+  const scrollProgress = document.getElementById('scrollProgress');
   let lastScrollY = 0;
 
-  if (header) {
-    window.addEventListener('scroll', () => {
-      const currentY = window.scrollY;
+  window.addEventListener('scroll', () => {
+    const currentY = window.scrollY;
+
+    // Header shadow
+    if (header) {
       if (currentY > 100) {
         header.style.boxShadow = '0 2px 16px rgba(0,0,0,0.08)';
       } else {
         header.style.boxShadow = 'none';
       }
-      lastScrollY = currentY;
-    }, { passive: true });
-  }
+    }
+
+    // Scroll progress bar
+    if (scrollProgress) {
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (currentY / docHeight) * 100 : 0;
+      scrollProgress.style.width = progress + '%';
+    }
+
+    lastScrollY = currentY;
+  }, { passive: true });
 
   /* ---------- 5. SMOOTH SCROLL FOR ANCHOR LINKS ---------- */
   document.querySelectorAll('a[href^="#"]').forEach(link => {
@@ -157,6 +168,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
   counters.forEach(el => counterObserver.observe(el));
 
+  /* ---------- 7b. STEPS TIMELINE DRAW ---------- */
+  const stepsLine = document.querySelector('.steps__line');
+  if (stepsLine) {
+    const lineObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          stepsLine.classList.add('steps__line--drawn');
+          lineObserver.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.3 }
+    );
+    lineObserver.observe(stepsLine);
+  }
+
   /* ---------- 8. RISK CALCULATOR ---------- */
   const calcRevenue = document.getElementById('calcRevenue');
   const calcRevenueValue = document.getElementById('calcRevenueValue');
@@ -220,6 +246,13 @@ document.addEventListener('DOMContentLoaded', () => {
     set('calcService', formatNum(serviceAnnual) + ' грн/рік');
     set('calcTotal', formatNum(totalRisk) + ' грн/рік');
     set('calcMultiplier', multiplier > 0 ? multiplier : '—');
+
+    // Bump animation on result numbers
+    document.querySelectorAll('.calc__result-number').forEach(n => {
+      n.classList.remove('calc-bump');
+      void n.offsetWidth;
+      n.classList.add('calc-bump');
+    });
   }
 
   if (calcRevenue) {
@@ -347,7 +380,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const m = Math.floor((diff % 3600000) / 60000);
     const s = Math.floor((diff % 60000) / 1000);
 
-    const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = String(val).padStart(2, '0'); };
+    const set = (id, val) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const newVal = String(val).padStart(2, '0');
+      if (el.textContent !== newVal) {
+        el.textContent = newVal;
+        el.classList.remove('tick');
+        void el.offsetWidth; // force reflow
+        el.classList.add('tick');
+      }
+    };
     set('deadlineDays', d);
     set('deadlineHours', h);
     set('deadlineMinutes', m);
