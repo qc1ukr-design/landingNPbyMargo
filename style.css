@@ -207,15 +207,12 @@ strong { font-weight: 700; }
 }
 
 .hero__video {
+  position: relative;
   width: 100%;
   max-width: 360px;
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: 0 12px 48px rgba(119,18,16,0.15);
-}
-
-.hero__video {
-  position: relative;
 }
 
 .hero__video-player {

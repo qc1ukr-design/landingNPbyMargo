@@ -3,7 +3,7 @@
    Call: GET /api/setup-webhook?secret=YOUR_BOT_TOKEN_LAST_8_CHARS
    ============================================================ */
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   const BOT_TOKEN = process.env.BOT_TOKEN;
   const secret = req.query.secret;
 
