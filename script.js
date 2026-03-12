@@ -37,6 +37,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  /* ---------- 1b. VIDEO SOUND TOGGLE ---------- */
+  const heroVideo = document.getElementById('heroVideo');
+  const heroSoundBtn = document.getElementById('heroSoundBtn');
+
+  if (heroVideo && heroSoundBtn) {
+    heroSoundBtn.addEventListener('click', () => {
+      if (heroVideo.muted) {
+        heroVideo.muted = false;
+        heroSoundBtn.classList.add('is-on');
+      } else {
+        heroVideo.muted = true;
+        heroSoundBtn.classList.remove('is-on');
+      }
+    });
+  }
+
   /* ---------- 2. SCROLL FADE-IN ANIMATIONS ---------- */
   const animTargets = document.querySelectorAll(
     '.pain__card, .solution__item, .steps__item, .results__stat, ' +
